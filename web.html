@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KE KE - Nền Tảng Học Tập & Chia Sẻ Bài Giảng</title>
+
+  <!-- Font chữ hiện đại Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-red: #d32f2f;
+      --dark-red: #9a0007;
+      --light-red: #ffebee;
+      --accent-red: #ff1744;
+      --border-red: rgba(211, 47, 47, 0.2);
+      --bg-body: #ffffff;
+      --bg-surface: #fdfdfd;
+      --text-main: #1f2937;
+      --text-muted: #64748b;
+      --shadow-sm: 0 4px 12px rgba(211, 47, 47, 0.06);
+      --shadow-md: 0 10px 25px -5px rgba(211, 47, 47, 0.12);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.6;
+      background-image:
+        radial-gradient(circle at 10% 10%, rgba(211, 47, 47, 0.03) 0%, transparent 40%),
+        radial-gradient(circle at 90% 90%, rgba(211, 47, 47, 0.02) 0%, transparent 40%);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--border-red);
+      padding: 14px 0;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      background: linear-gradient(135deg, var(--accent-red), var(--dark-red));
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.4rem;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 4px 14px rgba(211, 47, 47, 0.35);
+      letter-spacing: -1px;
+    }
+
+    .brand-text h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--dark-red);
+      letter-spacing: 0.5px;
+      line-height: 1;
+    }
+
+    .brand-text p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--primary-red);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(211, 47, 47, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(211, 47, 47, 0.45);
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      color: var(--primary-red);
+      border: 1.5px solid var(--primary-red);
+    }
+
+    .btn-outline:hover {
+      background: var(--light-red);
+    }
+
+    /* Hero Banner */
+    .hero {
+      padding: 50px 0 35px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: var(--light-red);
+      color: var(--primary-red);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      border: 1px solid var(--border-red);
+    }
+
+    .hero h2 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 14px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero h2 span {
+      color: var(--primary-red);
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto 26px;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* Section Styling */
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 24px;
+      border-left: 5px solid var(--primary-red);
+      padding-left: 14px;
+    }
+
+    .section-title h3 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--dark-red);
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Video Player Section */
+    .video-section {
+      padding: 30px 0 50px;
+    }
+
+    .video-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 25px;
+      background: #fff;
+      border: 1px solid var(--border-red);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .player-container {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .video-frame-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: var(--radius-md);
+      background: #000;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .video-frame-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-meta {
+      padding: 8px 0;
+    }
+
+    .video-meta .meta-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--primary-red);
+      background: var(--light-red);
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .video-meta h4 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .video-meta p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    /* Playlist */
+    .playlist-wrapper {
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid rgba(0,0,0,0.06);
+      padding-left: 20px;
+    }
+
+    .playlist-header {
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding-bottom: 12px;
+      border-bottom: 1.5px solid var(--border-red);
+      color: var(--primary-red);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .playlist-items {
+      overflow-y: auto;
+      max-height: 440px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-top: 14px;
+    }
+
+    .playlist-card {
+      display: flex;
+      gap: 12px;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .playlist-card:hover, .playlist-card.active {
+      background: var(--light-red);
+      border-color: var(--border-red);
+    }
+
+    .playlist-thumb {
+      width: 85px;
+      height: 55px;
+      border-radius: 6px;
+      background: #2a2a2a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .playlist-info h5 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .playlist-info span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Document Library Section */
+    .docs-section {
+      padding: 40px 0 70px;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill-btn {
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid var(--border-red);
+      background: #fff;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .pill-btn:hover, .pill-btn.active {
+      background: var(--primary-red);
+      color: #fff;
+      border-color: var(--primary-red);
+    }
+
+    .search-input {
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: 1.5px solid var(--border-red);
+      font-size: 0.9rem;
+      outline: none;
+      min-width: 250px;
+      transition: all 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary-red);
+      box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.15);
+    }
+
+    /* Document Cards Grid */
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .doc-card {
+      background: #fff;
+      border: 1px solid var(--border-red);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .doc-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-red);
+    }
+
+    .doc-badge {
+      align-self: flex-start;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--light-red);
+      color: var(--primary-red);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .doc-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .doc-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+
+    .doc-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px dashed var(--border-red);
+      padding-top: 12px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .doc-download {
+      color: var(--primary-red);
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .doc-download:hover {
+      text-decoration: underline;
+    }
+
+    /* Modal for Upload */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      max-width: 540px;
+      width: 100%;
+      padding: 26px;
+      border: 2px solid var(--border-red);
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .modal-close:hover { color: var(--primary-red); }
+
+    .modal h3 {
+      color: var(--dark-red);
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+      color: var(--text-main);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--border-red);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-red);
+    }
+
+    /* Footer */
+    footer {
+      background: #fff;
+      border-top: 2px solid var(--border-red);
+      padding: 30px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .video-layout {
+        grid-template-columns: 1fr;
+      }
+      .playlist-wrapper {
+        border-left: none;
+        border-top: 1px solid var(--border-red);
+        padding-left: 0;
+        padding-top: 16px;
+      }
+      .hero h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-content">
+      <a href="#" class="brand">
+        <div class="brand-logo">KE</div>
+        <div class="brand-text">
+          <h1>KE KE</h1>
+          <p>Học Tập & Tri Thức</p>
+        </div>
+      </a>
+      <nav>
+        <a href="#video-section">Bài Giảng Video</a>
+        <a href="#docs-section">Kho Tài Liệu</a>
+        <button class="btn btn-primary" onclick="openModal()">+ Đẩy Lên Nội Dung</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="container">
+      <span class="hero-badge">Thương Hiệu Học Tập KE KE</span>
+      <h2>Nền Tảng Đăng Tải Tài Liệu &amp; <span>Video Bài Giảng</span></h2>
+      <p>Tổng hợp hệ thống tài liệu từ Cấp 3 (Lớp 10, 11, 12) đến Đại học (Giải tích, Lập trình, Kinh tế...). Phát video trực tuyến chất lượng cao.</p>
+    </div>
+  </section>
+
+  <!-- Section 1: Video Bài Giảng -->
+  <section class="video-section" id="video-section">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h3>Rạp Bài Giảng KE KE</h3>
+          <p>Xem video bài giảng trực quan do chính KE KE biên tập và tải lên</p>
+        </div>
+      </div>
+
+      <div class="video-layout">
+        <!-- Main Player -->
+        <div class="player-container">
+          <div class="video-frame-wrapper">
+            <iframe id="mainVideoPlayer" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+          </div>
+          <div class="video-meta">
+            <span class="meta-tag" id="currentVideoTag">Cấp 3 • Toán 12</span>
+            <h4 id="currentVideoTitle">Khảo sát &amp; Vẽ đồ thị hàm số trọng tâm thi THPT Quốc Gia</h4>
+            <p id="currentVideoDesc">Bài giảng chi tiết phân dạng các bài toán cực trị, đường tiệm cận và kỹ thuật dùng máy tính Casio xử lý bài tập trắc nghiệm.</p>
+          </div>
+        </div>
+
+        <!-- Playlist -->
+        <div class="playlist-wrapper">
+          <div class="playlist-header">
+            <span>Danh sách bài giảng</span>
+            <span id="videoCount">3 bài</span>
+          </div>
+          <div class="playlist-items" id="playlistContainer">
+            <!-- Render via JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Kho Tài Liệu Phân Cấp & Phân Môn -->
+  <section class="docs-section" id="docs-section">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h3>Kho Tài Liệu Học Tập</h3>
+          <p>Tài liệu giáo trình, đề cương, bài tập tự luyện từ THPT đến Đại học</p>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="filter-bar">
+        <div class="filter-group" id="levelFilters">
+          <button class="pill-btn active" data-level="all">Tất cả</button>
+          <button class="pill-btn" data-level="cap3">Cấp 3 (10 - 12)</button>
+          <button class="pill-btn" data-level="daihoc">Đại Học</button>
+        </div>
+
+        <input type="text" id="docSearchInput" class="search-input" placeholder="Tìm kiếm tài liệu, môn học...">
+      </div>
+
+      <!-- Grid Cards -->
+      <div class="docs-grid" id="docsGridContainer">
+        <!-- Render via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal Đăng Tải Nội Dung Mới -->
+  <div class="modal" id="uploadModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <h3>Đẩy Nội Dung Lên KE KE</h3>
+
+      <div class="form-group">
+        <label>Loại nội dung</label>
+        <select class="form-control" id="uploadType" onchange="toggleUploadType()">
+          <option value="doc">Tài liệu học tập (PDF, DOCX)</option>
+          <option value="video">Video bài giảng (YouTube/Link)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Tiêu đề bài viết / tài liệu</label>
+        <input type="text" class="form-control" id="uploadTitle" placeholder="Ví dụ: Đề cương ôn thi Giải tích 1..." required>
+      </div>
+
+      <div class="form-group">
+        <label>Cấp độ &amp; Khối lớp</label>
+        <select class="form-control" id="uploadLevel">
+          <option value="cap3">Cấp 3 (Lớp 10 - 12)</option>
+          <option value="daihoc">Đại học</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Môn học</label>
+        <input type="text" class="form-control" id="uploadSubject" placeholder="Toán, Lý, Lập trình C++, Triết học..." required>
+      </div>
+
+      <div class="form-group">
+        <label>Mô tả tóm tắt</label>
+        <textarea class="form-control" id="uploadDesc" rows="2" placeholder="Ghi chú ngắn về tài liệu này..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Đường dẫn tài liệu hoặc URL Video (YouTube ID hoặc Embed URL)</label>
+        <input type="text" class="form-control" id="uploadLink" placeholder="Ví dụ: https://drive.google.com/... hoặc mã YouTube">
+      </div>
+
+      <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+        <button class="btn btn-outline" onclick="closeModal()">Hủy</button>
+        <button class="btn btn-primary" onclick="handleNewUpload()">Đăng Ngay</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p><strong>KE KE Education Platform</strong> &copy; 2026. Thiết kế hiện đại với tông màu Đỏ - Trắng.</p>
+    </div>
+  </footer>
+
+  <!-- Logic JavaScript -->
+  <script>
+    // Dữ liệu Video khởi tạo (Có thể lưu và đọc từ LocalStorage)
+    const defaultVideos = [
+      {
+        id: "v1",
+        title: "Khảo sát hàm số & Các dạng toán 12",
+        subject: "Toán 12",
+        level: "Cấp 3",
+        embedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        desc: "Ôn tập chuyên đề hàm số, bài toán tham số m và kỹ thuật nhận diện đồ thị."
+      },
+      {
+        id: "v2",
+        title: "Nhập môn Giải tích 1: Giới hạn & Chuỗi số",
+        subject: "Giải tích 1",
+        level: "Đại học",
+        embedUrl: "https://www.youtube.com/embed/aircAruvnKk",
+        desc: "Phương pháp khử dạng vô định 0/0, định lý kẹp và quy tắc L'Hopital căn bản."
+      },
+      {
+        id: "v3",
+        title: "Cấu trúc dữ liệu & Thuật toán cho sinh viên CNTT",
+        subject: "Lập trình",
+        level: "Đại học",
+        embedUrl: "https://www.youtube.com/embed/8jLOx1hD3_o",
+        desc: "Phân tích độ phức tạp thuật toán O(n), sắp xếp QuickSort và ngăn xếp (Stack)."
+      }
+    ];
+
+    // Dữ liệu Tài liệu khởi tạo
+    const defaultDocs = [
+      {
+        id: "d1",
+        title: "Cẩm nang 200 câu trắc nghiệm Toán 12 trọng tâm",
+        level: "cap3",
+        levelText: "Cấp 3 • Lớp 12",
+        subject: "Toán",
+        desc: "Tuyển tập câu hỏi phân loại 8+ và 9+ kèm đáp án giải chi tiết.",
+        fileType: "PDF",
+        size: "3.4 MB",
+        link: "#"
+      },
+      {
+        id: "d2",
+        title: "Đề cương Lý thuyết Vật Lý 11: Quang & Sóng",
+        level: "cap3",
+        levelText: "Cấp 3 • Lớp 11",
+        subject: "Vật Lý",
+        desc: "Tổng hợp toàn bộ công thức thấu kính, khúc xạ ánh sáng và bài tập vận dụng.",
+        fileType: "PDF",
+        size: "2.1 MB",
+        link: "#"
+      },
+      {
+        id: "d3",
+        title: "Giáo trình Đại số Tuyến tính & Ma trận hệ số",
+        level: "daihoc",
+        levelText: "Đại học",
+        subject: "Toán cao cấp",
+        desc: "Hệ phương trình tuyến tính, không gian vector và phép biến đổi đường chéo.",
+        fileType: "PDF",
+        size: "5.8 MB",
+        link: "#"
+      },
+      {
+        id: "d4",
+        title: "Slide bài giảng Lập trình Web full-stack (HTML/CSS/JS)",
+        level: "daihoc",
+        levelText: "Đại học",
+        subject: "Công nghệ thông tin",
+        desc: "Tài liệu cơ bản xây dựng giao diện tương thích đa nền tảng cho người mới bắt đầu.",
+        fileType: "ZIP",
+        size: "12 MB",
+        link: "#"
+      }
+    ];
+
+    // Lấy dữ liệu hoặc nạp mặc định
+    let videos = JSON.parse(localStorage.getItem('keke_videos')) || defaultVideos;
+    let documents = JSON.parse(localStorage.getItem('keke_docs')) || defaultDocs;
+
+    // Render Video Playlist
+    function renderVideos() {
+      const playlistContainer = document.getElementById('playlistContainer');
+      const videoCount = document.getElementById('videoCount');
+      playlistContainer.innerHTML = '';
+      videoCount.innerText = `${videos.length} bài`;
+
+      videos.forEach((vid, index) => {
+        const item = document.createElement('div');
+        item.className = `playlist-card ${index === 0 ? 'active' : ''}`;
+        item.onclick = () => selectVideo(vid, item);
+        item.innerHTML = `
+          <div class="playlist-thumb">▶</div>
+          <div class="playlist-info">
+            <h5>${vid.title}</h5>
+            <span>${vid.level} • ${vid.subject}</span>
+          </div>
+        `;
+        playlistContainer.appendChild(item);
+      });
+    }
+
+    function selectVideo(vid, cardElement) {
+      document.querySelectorAll('.playlist-card').forEach(c => c.classList.remove('active'));
+      if(cardElement) cardElement.classList.add('active');
+
+      document.getElementById('mainVideoPlayer').src = vid.embedUrl;
+      document.getElementById('currentVideoTag').innerText = `${vid.level} • ${vid.subject}`;
+      document.getElementById('currentVideoTitle').innerText = vid.title;
+      document.getElementById('currentVideoDesc').innerText = vid.desc;
+    }
+
+    // Render Documents Grid
+    let currentFilter = 'all';
+    function renderDocs() {
+      const grid = document.getElementById('docsGridContainer');
+      const searchVal = document.getElementById('docSearchInput').value.toLowerCase();
+      grid.innerHTML = '';
+
+      const filtered = documents.filter(doc => {
+        const matchLevel = (currentFilter === 'all') || (doc.level === currentFilter);
+        const matchSearch = doc.title.toLowerCase().includes(searchVal) || doc.subject.toLowerCase().includes(searchVal);
+        return matchLevel && matchSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px 0;">Không tìm thấy tài liệu phù hợp.</p>`;
+        return;
+      }
+
+      filtered.forEach(doc => {
+        const card = document.createElement('div');
+        card.className = 'doc-card';
+        card.innerHTML = `
+          <div>
+            <span class="doc-badge">${doc.levelText} • ${doc.subject}</span>
+            <h4 class="doc-title">${doc.title}</h4>
+            <p class="doc-desc">${doc.desc}</p>
+          </div>
+          <div class="doc-footer">
+            <span>${doc.fileType} • ${doc.size || 'Tài liệu'}</span>
+            <a href="${doc.link}" class="doc-download" target="_blank">Tải về &darr;</a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Xử lý bộ lọc cấp học
+    document.querySelectorAll('#levelFilters .pill-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#levelFilters .pill-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.level;
+        renderDocs();
+      });
+    });
+
+    // Tìm kiếm tài liệu thời gian thực
+    document.getElementById('docSearchInput').addEventListener('input', renderDocs);
+
+    // Xử lý Modal Đẩy nội dung
+    const modal = document.getElementById('uploadModal');
+    function openModal() { modal.classList.add('active'); }
+    function closeModal() { modal.classList.remove('active'); }
+
+    function handleNewUpload() {
+      const type = document.getElementById('uploadType').value;
+      const title = document.getElementById('uploadTitle').value.trim();
+      const level = document.getElementById('uploadLevel').value;
+      const subject = document.getElementById('uploadSubject').value.trim();
+      const desc = document.getElementById('uploadDesc').value.trim();
+      let link = document.getElementById('uploadLink').value.trim();
+
+      if (!title || !subject) {
+        alert('Vui lòng điền đầy đủ Tiêu đề và Môn học!');
+        return;
+      }
+
+      if (type === 'video') {
+        // Chuẩn hóa đường link Youtube Embed cơ bản
+        let embed = link;
+        if (link.includes('watch?v=')) {
+          const vId = link.split('watch?v=')[1].split('&')[0];
+          embed = `https://www.youtube.com/embed/${vId}`;
+        }
+        const newVid = {
+          id: 'v_' + Date.now(),
+          title,
+          subject,
+          level: level === 'cap3' ? 'Cấp 3' : 'Đại học',
+          embedUrl: embed || 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+          desc: desc || 'Bài giảng tải lên bởi KE KE.'
+        };
+        videos.unshift(newVid);
+        localStorage.setItem('keke_videos', JSON.stringify(videos));
+        renderVideos();
+        selectVideo(newVid);
+        alert('Đã đăng video bài giảng mới thành công!');
+      } else {
+        const newDoc = {
+          id: 'd_' + Date.now(),
+          title,
+          level,
+          levelText: level === 'cap3' ? 'Cấp 3' : 'Đại học',
+          subject,
+          desc: desc || 'Tài liệu học tập lưu trữ tại KE KE.',
+          fileType: 'PDF',
+          size: 'Tài liệu mới',
+          link: link || '#'
+        };
+        documents.unshift(newDoc);
+        localStorage.setItem('keke_docs', JSON.stringify(documents));
+        renderDocs();
+        alert('Đã đẩy tài liệu mới lên danh sách thành công!');
+      }
+
+      closeModal();
+      // Reset input form
+      document.getElementById('uploadTitle').value = '';
+      document.getElementById('uploadSubject').value = '';
+      document.getElementById('uploadDesc').value = '';
+      document.getElementById('uploadLink').value = '';
+    }
+
+    // Khởi chạy khi load trang
+    window.addEventListener('DOMContentLoaded', () => {
+      renderVideos();
+      renderDocs();
+    });
+  </script>
+</body>
+</html>
